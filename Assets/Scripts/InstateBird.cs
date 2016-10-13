@@ -5,14 +5,15 @@ using UnityEngine.UI;
 public class InstateBird : MonoBehaviour {
     public int InstantTime;
     public GameObject bird;
+    private Text Scoretext;
 	int score;
     int time;
-	public Text scoreText;
     Vector2 postion;
 	// Use this for initialization
 	void Start () {
         time = 0;
 		score = 0;
+        Scoretext = GameObject.Find("Canvas/Score").GetComponent<Text>();
 	}
 	
 	// Update is called once per frame
@@ -35,6 +36,6 @@ public class InstateBird : MonoBehaviour {
 		score++;
 		InstantTime = 80 - (int)((double)score * 0.1);
 		Debug.Log (InstantTime);
-		scoreText.text = score.ToString ();
+		Scoretext.text = "Score" + score.ToString ();
 	}
 }

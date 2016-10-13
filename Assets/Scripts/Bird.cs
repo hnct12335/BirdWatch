@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Bird : MonoBehaviour {
 
+    GameObject Life;
     private Vector2 Postion;
     float speed;
     bool Exist;
@@ -12,6 +13,7 @@ public class Bird : MonoBehaviour {
         speed = (float)0.1;
         Exist = true;
         coda = GameObject.Find("Coda").GetComponent<Coda>();
+        Life = GameObject.Find("Canvas");
         //Debug.Log(coda.getHitFlg.ToString());
     }
 	
@@ -19,9 +21,15 @@ public class Bird : MonoBehaviour {
 	void Update () {
         
             Postion = transform.position;
-            if (Postion.y < -9)
+            if (Postion.y < -3)
             {
-			//Destroy (gameObject);
+                //Destroy (gameObject);
+                if (Exist)
+                {
+                    Life.GetComponent<Lifes>().DeclLife();
+                    Debug.Log("Bird is Died.");
+                Exist = false;
+            }
             }
             else
             {

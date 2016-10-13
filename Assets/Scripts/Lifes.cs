@@ -7,15 +7,19 @@ public class Lifes : MonoBehaviour {
     private int LifeNum;
 	// Use this for initialization
 	void Start () {
-        LifeText = GetComponentInChildren<Life>();
+        LifeText = GameObject.Find("Canvas/Life").GetComponent<Text>(); ;
         this.LifeNum = 3;
         ShowLife();
 	}
 
     public void DeclLife()
     {
-        if (this.LifeNum > 0) LifeNum--;
-        ShowLife();
+        Debug.Log("DeclLife");
+        if (this.LifeNum > 0)
+        {
+            LifeNum--;
+            ShowLife();
+        }
     }
 	
     public bool IsGameOver()
