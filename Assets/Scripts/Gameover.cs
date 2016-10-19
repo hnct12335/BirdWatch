@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 
-public class Title : MonoBehaviour {
+public class Gameover : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -13,7 +13,7 @@ public class Title : MonoBehaviour {
 	void Update () {
         if (Input.GetKeyDown(KeyCode.Space) && Time.frameCount > 10)
         {
-            SceneManager.LoadScene("main");
+            SceneManager.LoadScene("title");
         }
-	}
+    }
 }

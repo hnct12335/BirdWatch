@@ -4,59 +4,78 @@ using System.Collections;
 public class Coda : MonoBehaviour {
     int scale;
     bool HitFlg;
+    GameMain Gmain;
     int time;
     public int Score;
 	GameObject objmain;
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         scale = 2;
         HitFlg = false;
         time = 0;
         Score = 0; ;
-		objmain = GameObject.Find ("GameObjectMain");
-		Debug.Log ("test");
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        Vector2 Postion;
-        Postion.x = 0;
-        Postion.y = 0;
-        bool Up = Input.GetKey(KeyCode.UpArrow);
-        bool Down = Input.GetKey(KeyCode.DownArrow); ;
-        bool Left = Input.GetKey(KeyCode.LeftArrow); ;
-        bool Right = Input.GetKey(KeyCode.RightArrow); ;
+        objmain = GameObject.Find("GameObjectMain");
+        Debug.Log("test");
+        Gmain = GameObject.Find("GameObjectMain").GetComponent<GameMain>();
+    }
 
-        if (Up) Postion.y++;
-        if (Down) Postion.y--;
-        if (Left) Postion.x--;
-        if (Right) Postion.x++;
+    // Update is called once per frame
+    void Update() {
 
-        Postion.x *= scale;
-        Postion.y *= scale;
-
-        this.transform.position = Postion;
-		/*
-        if (Input.GetKey(KeyCode.Space))
+        if (!Gmain.DemoFlg())
         {
-			Debug.Log ("hoge");
-            HitFlg = true;
-        }
+            Vector2 Postion;
+            //Postion.x = 0;
+            //Postion.y = 0;
+            Postion = this.transform.position;
+            bool Up = Input.GetKey(KeyCode.UpArrow);
+            bool Down = Input.GetKey(KeyCode.DownArrow); ;
+            bool Left = Input.GetKey(KeyCode.LeftArrow); ;
+            bool Right = Input.GetKey(KeyCode.RightArrow); ;
 
-        if (HitFlg)
-        {
-            time++;
-            if(time > 30)
+            if (Up && Postion.y < 3)
             {
-                HitFlg = false;
+                Postion.y++;
             }
-        }
-        else
-        {
-            time = 0;
-        }
-*/
+            if (Down && Postion.y > -3)
+            {
+                Postion.y--;
+            }
+            if (Left && Postion.x > -3)
+            {
+                Postion.x--;
+            }
+            if (Right && Postion.x < 3)
+            {
+                Postion.x++;
+            }
 
+            //Postion.x *= scale;
+            //Postion.y *= scale;
+
+            this.transform.position = Postion;
+            /*
+            if (Input.GetKey(KeyCode.Space))
+            {
+                Debug.Log ("hoge");
+                HitFlg = true;
+            }
+
+            if (HitFlg)
+            {
+                time++;
+                if(time > 30)
+                {
+                    HitFlg = false;
+                }
+            }
+            else
+            {
+                time = 0;
+            }
+    */
+        }
 
 	}
 
